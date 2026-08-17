@@ -103,4 +103,4 @@ We welcome contributions from the community! If you have any ideas or suggestion
 
 # Acknowledgements
 
-This project was inspired by the Kaggle dataset on AirBNB Price Prediction and the corresponding competition. We also acknowledge the open-source Python libraries used in this project and their contributors.
+This project was inspired by the Kaggle dataset on AirBNB Price Prediction and the corresponding competition. We also acknowledge the open-source Python libraries used in this project and their contributors.nv
