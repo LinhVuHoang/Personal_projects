@@ -64,3 +64,76 @@ class DataTransformation:
         except Exception as e:
             logging.info("Exception occured in the initiate_datatranssformation")
             raise customexception(e,sys)
+        
+        
+        
+    def initialize_data_transformation(self,train_path,test_path):
+        try:
+            train_df=pd.read_csv(train_path)
+            test_df=pd.read_csv(test_path)
+            
+            logging.info("read train and test data complete")
+            logging.info(f'Train Dataframe Head : \n{train_df.head().to_string()}')
+            logging.info(f'Test Dataframe Head : \n{test_df.head().to_string()}')
+            
+            preprocessing_obj = self.get_data_transformation()
+
+            train_df['host_response_rate'] = train_df['host_response_rate'][train_df['host_response_rate'].notna()].str.replace('%', '').astype(int)
+
+            # Convert only non-null values in the test_df
+            test_df['host_response_rate'] = test_df['host_response_rate'][test_df['host_response_rate'].notna()].str.replace('%', '').astype(int)
+
+            logging.info("Host Response Rate converted to int")
+            
+            target_column_name = 'log_price'
+            drop_columns = [target_column_name,'id',"name","description","first_review","host_since","last_review","neighbourhood","thumbnail_url", "zipcode"]
+            
+
+            # Assuming train_df and test_df are your DataFrames with a column named "amenities"
+            train_df['amenities'] = [len(str(amenity).split(',')) for amenity in train_df['amenities']]
+            test_df['amenities'] = [len(str(amenity).split(',')) for amenity in test_df['amenities']]
+
+
+            input_feature_train_df = train_df.drop(columns=drop_columns,axis=1)
+            target_feature_train_df=train_df[target_column_name]
+            
+            
+            input_feature_test_df=test_df.drop(columns=drop_columns,axis=1)
+            target_feature_test_df=test_df[target_column_name]
+
+
+            logging.info(f'Input Feature Train Dataframe Head : \n{input_feature_train_df.head().to_string()}')
+            logging.info(f'Target Feature Train Dataframe Head : \n{target_feature_train_df.head().to_string()}')
+
+            logging.info(f'Input Feature Test Dataframe Head : \n{input_feature_test_df.head().to_string()}')
+            logging.info(f'Target Feature Test Dataframe Head : \n{target_feature_test_df.head().to_string()}')
+
+            logging.info(f'{input_feature_train_df.dtypes}')
+
+            input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df) #fit - học các thông tin cần thiết từ data và transform: dùng những thông tin vừa học để biến đổi train
+            input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df) #ép tập test procesing theo cùng thông tin học từ tập train
+ 
+            
+            logging.info("Applying preprocessing object on training and testing datasets.")
+
+            train_arr = np.concatenate([input_feature_train_arr, np.array(target_feature_train_df).reshape(-1, 1)], axis=1) #combine preprocessed features with label. train's shape is (3,3) and reshape target is (3,1) --> train_df's shape is (3,4)
+            test_arr = np.concatenate([input_feature_test_arr, np.array(target_feature_test_df).reshape(-1, 1)], axis=1)
+
+
+            save_object(
+                file_path=self.data_transformation_config.preprocessor_obj_file_path,
+                obj=preprocessing_obj
+            )
+            
+            logging.info("preprocessing pickle file saved")
+            
+            return (
+                train_arr,
+                test_arr
+            )
+            
+        except Exception as e:
+            logging.info("Exception occured in the initiate_datatransformation")
+
+            raise customexception(e,sys)
+            
