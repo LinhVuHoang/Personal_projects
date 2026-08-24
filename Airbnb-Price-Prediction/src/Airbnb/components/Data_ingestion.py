@@ -20,7 +20,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Data ingestion started")
         try:
-            data = pd.read_csv("Notebook_Experiments\Data\Airbnb_Data.csv")
+            data = pd.read_csv("/Users/hoangvulinh/Documents/RoadmapAI/Personal_projects/Airbnb-Price-Prediction/Notebook_Experiments/Data/Airbnb_Data.csv")
             logging.info("Read the Data from the csv file")
 
             os.makedirs(os.path.dirname(os.path.join(self.ingestion_config.raw_data_path)), exist_ok=True)
