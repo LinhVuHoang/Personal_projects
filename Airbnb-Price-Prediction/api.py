@@ -61,25 +61,25 @@ def home(request: Request):
 @app.post("/")
 def predict(
     request: Request,
-    propertytype: Optional[str] = Form(None),
-    roomtype: Optional[str] = Form(None),
-    amenties: Optional[str] = Form(None),
-    accommodates: Optional[str] = Form(None),
-    bathrooms: Optional[str] = Form(None),
-    bedtype: Optional[str] = Form(None),
-    canceltype: Optional[str] = Form(None),
-    clean: Optional[str] = Form(None),
-    city: Optional[str] = Form(None),
-    dp: Optional[str] = Form(None),
-    verify: Optional[str] = Form(None),
-    hostresponse: Optional[str] = Form(None),
-    instbook: Optional[str] = Form(None),
-    lat: Optional[str] = Form(None),
-    long: Optional[str] = Form(None),
-    review: Optional[str] = Form(None),
-    overallreview: Optional[str] = Form(None),
-    bedrooms: Optional[str] = Form(None),
-    beds: Optional[str] = Form(None)
+    property_type: str = Form(...),
+    room_type: str = Form(...),
+    bedrooms: str = Form(...),
+    beds: str = Form(...),
+    amenities: str = Form(...),
+    accommodates: str = Form(...),
+    bathrooms: str = Form(...),
+    bed_type: str = Form(...),
+    cancellation_policy: str = Form(...),
+    cleaning_fee: str = Form(...),
+    city: str = Form(...),
+    host_has_profile_pic: str = Form(...),
+    host_identity_verified: str = Form(...),
+    host_response_rate: str = Form(...),
+    instant_bookable: str = Form(...),
+    latitude: str = Form(...),
+    longitude: str = Form(...),
+    number_of_reviews: str = Form(...),
+    review_scores_rating: str = Form(...)
 ):
     try:
 
@@ -88,23 +88,23 @@ def predict(
         # ----------------------------------------------------
 
         data = CustomData(
-            property_type=propertytype,
-            room_type=roomtype,
-            amenities=amenties,
+            property_type=property_type,
+            room_type=room_type,
+            amenities=amenities,
             accommodates=accommodates,
             bathrooms=bathrooms,
-            bed_type=bedtype,
-            cancellation_policy=canceltype,
-            cleaning_fee=clean,
+            bed_type=bed_type,
+            cancellation_policy=cancellation_policy,
+            cleaning_fee=cleaning_fee =="True",
             city=city,
-            host_has_profile_pic=dp,
-            host_identity_verified=verify,
-            host_response_rate=hostresponse,
-            instant_bookable=instbook,
-            latitude=lat,
-            longitude=long,
-            number_of_reviews=review,
-            review_scores_rating=overallreview,
+            host_has_profile_pic=host_has_profile_pic,
+            host_identity_verified=host_identity_verified,
+            host_response_rate=host_response_rate,
+            instant_bookable=instant_bookable,
+            latitude=latitude,
+            longitude=longitude,
+            number_of_reviews=number_of_reviews,
+            review_scores_rating=review_scores_rating,
             bedrooms=bedrooms,
             beds=beds
         )
@@ -114,7 +114,6 @@ def predict(
         # ----------------------------------------------------
 
         final_data = data.get_data_as_dataframe()
-
         # ----------------------------------------------------
         # Prediction
         # ----------------------------------------------------
@@ -122,9 +121,9 @@ def predict(
         predict_pipeline = PredictPipeline()
 
         pred = predict_pipeline.predict(final_data)
-
+        
         result = round(float(pred[0]), 2)
-
+        print(result)
         # ----------------------------------------------------
         # Return result to HTML
         # ----------------------------------------------------
@@ -133,7 +132,7 @@ def predict(
             request=request,
             name="index.html",
             context={
-                "final_result": result
+                "result": result
             }
         )
 

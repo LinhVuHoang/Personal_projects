@@ -17,7 +17,13 @@ class PredictPipeline:
             preprocessor = load_object(preprocessor_path)
             model = load_object(model_path)
             logging.info('Preprocessor and Model Pickle files loaded')
+            print("features:")
+            print(features)
+
+            print("shape:", features.shape)
+            print("columns:", features.columns.tolist())
             scaled_data = preprocessor.transform(features)
+
             logging.info('Data Scaled')
             pred = model.predict(scaled_data)
             return pred
@@ -91,7 +97,7 @@ class CustomData:
                 'beds': [self.beds]
             }
             df = pd.DataFrame(custom_data_input_dict)
-            df = np.reshape(df, (19,))
+            # df = np.reshape(df, (19,))
             logging.info('Dataframe Gathered')
             return df
         except Exception as e:

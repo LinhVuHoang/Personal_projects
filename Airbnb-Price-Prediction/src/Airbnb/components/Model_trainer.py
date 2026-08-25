@@ -35,9 +35,32 @@ class ModelTrainer:
             test_array[:,-1]
         )
             models = {
-                'XGBoost': XGBRegressor(),
-                'Catboost': CatBoostRegressor(),
-                'Lightgmb': LGBMRegressor()
+                'XGBoost': XGBRegressor(n_estimators=800,
+                    learning_rate=0.05,
+                    max_depth=5,
+                    subsample=0.7,
+                    colsample_bytree=0.7,
+                    gamma=0.1,
+                    min_child_weight=3,
+                    random_state=42,
+                    n_jobs=-1),
+                'Catboost': CatBoostRegressor(iterations=800,
+                    learning_rate=0.1,
+                    depth=8,
+                    subsample=1.0,
+                    l2_leaf_reg=3,
+                    loss_function="RMSE",
+                    verbose=False,
+                    random_seed=42),
+                'Lightgmb': LGBMRegressor(n_estimators=800,
+                    min_child_samples=20,
+                    learning_rate=0.05,
+                    max_depth=7,
+                    num_leaves=50,
+                    subsample=0.9,
+                    colsample_bytree=0.7,
+                    random_state=42,
+                    n_jobs=-1)
             }
             model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
             print(model_report)

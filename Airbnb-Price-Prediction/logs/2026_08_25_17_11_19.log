@@ -1,0 +1,3 @@
+[2026-08-25 17:11:29,667] 101 root - INFO - Dataframe Gathered
+[2026-08-25 17:11:29,782] 19 root - INFO - Preprocessor and Model Pickle files loaded
+[2026-08-25 17:11:29,791] 27 root - INFO - Data Scaled
