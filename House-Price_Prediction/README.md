@@ -34,25 +34,20 @@ pip install -r requirements.txt
 
 # Dataset Description
 
-## Boston Housing Dataset
+## California Housing Dataset
 
-The Boston Housing dataset is imported from the `sklearn.datasets` module in Python. It consists of a total of 506 instances, each representing a house in the Boston area. The dataset contains 13 numerical features that describe various aspects of the houses, such as crime rate, average number of rooms, and proximity to employment centers. The target variable is the median value of owner-occupied homes in thousands of dollars.
+The California Housing dataset is imported from the `sklearn.datasets` module in Python. It consists of a total of 506 instances, each representing a house in the California area. The dataset contains 13 numerical features that describe various aspects of the houses, such as crime rate, average number of rooms, and proximity to employment centers. The target variable is the median value of owner-occupied homes in thousands of dollars.
 
 ### Features
 
-1. CRIM: Per capita crime rate by town
-2. ZN: Proportion of residential land zoned for lots over 25,000 sq. ft.
-3. INDUS: Proportion of non-retail business acres per town
-4. CHAS: Charles River dummy variable (1 if tract bounds river; 0 otherwise)
-5. NOX: Nitric oxide concentration (parts per 10 million)
-6. RM: Average number of rooms per dwelling
-7. AGE: Proportion of owner-occupied units built prior to 1940
-8. DIS: Weighted distances to five Boston employment centers
-9. RAD: Index of accessibility to radial highways
-10. TAX: Full-value property tax rate per $10,000
-11. PTRATIO: Pupil-teacher ratio by town
-12. B: 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-13. LSTAT: Percentage of lower status of the population
+1. MedInc        median income in block group
+2. HouseAge      median house age in block group
+3. AveRooms      average number of rooms per household
+4. AveBedrms     average number of bedrooms per household
+5. Population    block group population
+6. AveOccup      average number of household members
+7. Latitude      block group latitude
+8. Longitude     block group longitude
 
 ### Target Variable
 
@@ -60,7 +55,7 @@ The Boston Housing dataset is imported from the `sklearn.datasets` module in Pyt
 
 # Data Preprocessing
 
-The Boston Housing dataset is preprocessed before training the machine learning model. The dataset is imported and split into input features (X) and the target variable (y). The input features are then standardized using the `StandardScaler` from the `sklearn.preprocessing` module to ensure that all features have a similar scale. The preprocessed dataset is further divided into training and testing sets using a 80:20 train-test split ratio.
+The California Housing dataset is preprocessed before training the machine learning model. The dataset is imported and split into input features (X) and the target variable (y). The input features are then standardized using the `StandardScaler` from the `sklearn.preprocessing` module to ensure that all features have a similar scale. The preprocessed dataset is further divided into training and testing sets using a 80:20 train-test split ratio.
 
 # Model Training and Evaluation
 
@@ -88,4 +83,4 @@ If you have a suggestion that would make this better, please fork the repo and c
 Distributed under the GNU General Public License v3.0. See ```LICENSE.txt``` for more information.
 
 # Acknowledgements
-This project was inspired by the Kaggle dataset on Boston House Price Prediction and the corresponding competition. We also acknowledge the open-source Python libraries used in this project and their contributors.
+This project was inspired by the Kaggle dataset on California House Price Prediction and the corresponding competition. We also acknowledge the open-source Python libraries used in this project and their contributors.
