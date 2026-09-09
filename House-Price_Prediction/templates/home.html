@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+
+
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+<style>
+    .login {
+        width: 400px;
+        margin: 30px auto;
+        font-family: 'Open Sans Condensed', sans-serif;
+    }
+
+    h1 {
+        font-size: 2em;
+        text-align: center;
+        font-family: 'Pacifico', cursive;
+        color: #3b3e47;
+        margin-bottom: 50px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 2px solid #3b3e47;
+        font-size: 1.2em;
+        font-family: 'Arimo', sans-serif;
+    }
+
+    button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #3b3e47;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-family: 'Arimo', sans-serif;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #2b2e37;
+    }
+
+    .result-text {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        color: #3b3e47;
+        margin-top: 50px;
+    }
+
+    .error-text {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        color: red;
+        margin-top: 30px;
+    }
+
+    body {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="login">
+
+<h1>California House Price Prediction</h1>
+
+<form id="predictionForm">
+
+    <input type="number" step="any" name="MedInc" placeholder="MedInc" required>
+
+    <input type="number" step="any" name="HouseAge" placeholder="HouseAge" required>
+
+    <input type="number" step="any" name="AveRooms" placeholder="AveRooms" required>
+
+    <input type="number" step="any" name="AveBedrms" placeholder="AveBedrms" required>
+
+    <input type="number" step="any" name="Population" placeholder="Population" required>
+
+    <input type="number" step="any" name="AveOccup" placeholder="AveOccup" required>
+
+    <input type="number" step="any" name="Latiude" placeholder="Latitude" required>
+
+    <input type="number" step="any" name="Longitude" placeholder="Longitude" required>
+
+    <button type="submit">Predict</button>
+
+</form>
+
+<p id="result" class="result-text"></p>
+
+<p id="error" class="error-text"></p>
+
+</div>
+
+<script>
+
+    document.getElementById("predictionForm").addEventListener("submit", async function(event) {
+
+        // Không reload trang
+        event.preventDefault();
+
+        // Clear kết quả cũ
+        document.getElementById("result").innerText = "";
+        document.getElementById("error").innerText = "";
+
+        // Lấy dữ liệu từ form
+        const formData = new FormData(this);
+
+        // Convert FormData -> object
+        const data = {};
+
+        formData.forEach((value, key) => {
+            data[key] = parseFloat(value);
+        });
+
+        console.log("Input:", data);
+
+        try {
+
+            // Gọi FastAPI
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: data
+                })
+            });
+
+            // Nếu API trả lỗi
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
+            // Nhận JSON
+            const result = await response.json();
+
+            console.log("Response:", result);
+
+            // Hiển thị prediction
+            document.getElementById("result").innerText =
+                `Predicted House Price: ${result.prediction.toFixed(2)}`;
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            document.getElementById("error").innerText =
+                "Prediction failed. Please try again.";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
