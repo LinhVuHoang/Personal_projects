@@ -18,7 +18,7 @@ class ModelTrainerConfig:
     
 class ModelTrainer:
     def __init__(self):
-        self.model_trainer__config = ModelTrainerConfig()
+        self.model_trainer_config = ModelTrainerConfig()
     
     def initate_model_training(self,train_array, test_array):
         
