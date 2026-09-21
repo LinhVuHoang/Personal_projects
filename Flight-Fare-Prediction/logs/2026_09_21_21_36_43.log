@@ -1,0 +1,58 @@
+[2026-09-21 21:36:44,847] 23 root - INFO - Data ingestion started
+[2026-09-21 21:36:44,877] 29 root - INFO - Created the raw data file
+[2026-09-21 21:36:44,877] 30 root - INFO - Splitting the data into train and test
+[2026-09-21 21:36:44,879] 32 root - INFO - Data splitting is done
+[2026-09-21 21:36:44,891] 51 root - INFO - Conver data train is done
+[2026-09-21 21:36:44,902] 71 root - INFO - Conver test train is done
+[2026-09-21 21:36:44,956] 75 root - INFO - Created the train and test data files
+[2026-09-21 21:36:44,956] 76 root - INFO - Data ingestion completed
+[2026-09-21 21:36:45,059] 69 root - INFO - Read train and test data complete
+[2026-09-21 21:36:45,060] 70 root - INFO - Train Dataframe Head : 
+       Airline Date_of_Journey   Source             Dep_Time Destination  Class  Price  Journey_Day  Journey_Month  Dep_Hour  Dep_Minute
+0  Jet Airways      2019-05-18  Kolkata  1900-01-01 05:45:00    Banglore      0  10844           18              5         5          45
+1        GoAir      2019-06-03    Delhi  1900-01-01 10:35:00      Cochin      0   4959            3              6        10          35
+2  Jet Airways      2019-05-01  Kolkata  1900-01-01 14:05:00    Banglore      0  14781            1              5        14           5
+3       IndiGo      2019-05-24  Chennai  1900-01-01 14:45:00     Kolkata      0   3858           24              5        14          45
+4  Jet Airways      2019-05-21    Delhi  1900-01-01 22:50:00      Cochin      0  12898           21              5        22          50
+[2026-09-21 21:36:45,065] 71 root - INFO - Test Dataframe Head : 
+             Airline Date_of_Journey  Source             Dep_Time Destination  Class  Price  Journey_Day  Journey_Month  Dep_Hour  Dep_Minute
+0        Jet Airways      2019-03-12  Mumbai  1900-01-01 06:30:00   Hyderabad      0  23528           12              3         6          30
+1        Jet Airways      2019-05-09   Delhi  1900-01-01 11:30:00      Cochin      0  12373            9              5        11          30
+2           SpiceJet      2019-04-24   Delhi  1900-01-01 15:45:00      Cochin      0   5583           24              4        15          45
+3  Multiple carriers      2019-03-21   Delhi  1900-01-01 12:50:00      Cochin      0   7695           21              3        12          50
+4          Air India      2019-06-24   Delhi  1900-01-01 17:15:00      Cochin      0  11972           24              6        17          15
+[2026-09-21 21:36:45,065] 27 root - INFO - Data Transformation initiated
+[2026-09-21 21:36:45,065] 34 root - INFO - Pipeline Initiated
+[2026-09-21 21:36:45,101] 82 root - INFO - Applying preprocessing object on training and testing datasets.
+[2026-09-21 21:36:45,102] 87 root - INFO - Train Array : 
+[[ 5.66751717e-01  2.49340029e-01 -1.29727278e+00 ...  0.00000000e+00
+   0.00000000e+00  1.08440000e+04]
+ [-1.20220897e+00  1.10462035e+00 -4.31641129e-01 ...  0.00000000e+00
+   0.00000000e+00  4.95900000e+03]
+ [-1.43807040e+00  2.49340029e-01  2.60864196e-01 ...  0.00000000e+00
+   0.00000000e+00  1.47810000e+04]
+ ...
+ [ 9.20543854e-01 -6.05940295e-01 -9.51020122e-01 ...  0.00000000e+00
+   0.00000000e+00  7.45200000e+03]
+ [-4.94624697e-01 -6.05940295e-01 -7.77893791e-01 ...  0.00000000e+00
+   0.00000000e+00  4.82300000e+03]
+ [-4.94624697e-01  1.10462035e+00  6.07116858e-01 ...  0.00000000e+00
+   0.00000000e+00  1.37310000e+04]]
+[2026-09-21 21:36:45,103] 88 root - INFO - Test Array : 
+[[-1.40832559e-01 -1.46122062e+00 -1.12414645e+00 ...  0.00000000e+00
+   0.00000000e+00  2.35280000e+04]
+ [-4.94624697e-01  2.49340029e-01 -2.58514798e-01 ...  0.00000000e+00
+   0.00000000e+00  1.23730000e+04]
+ [ 1.27433599e+00 -6.05940295e-01  4.33990527e-01 ...  0.00000000e+00
+   0.00000000e+00  5.58300000e+03]
+ ...
+ [ 2.12959579e-01  2.49340029e-01 -8.53884665e-02 ...  0.00000000e+00
+   0.00000000e+00  7.67000000e+03]
+ [-1.20220897e+00 -1.46122062e+00 -2.16290444e+00 ...  0.00000000e+00
+   1.00000000e+00  6.14400000e+03]
+ [-1.43807040e+00  1.10462035e+00  8.77378646e-02 ...  0.00000000e+00
+   0.00000000e+00  1.02620000e+04]]
+[2026-09-21 21:36:45,106] 95 root - INFO - Preprocessing joblib file saved
+[2026-09-21 21:36:45,986] 30 root - INFO - Splitting Dependent and Independent variables from train and test data
+[2026-09-21 21:36:47,105] 52 root - INFO - Model Report : {'LinearRegression': 0.5465739441411256, 'Lasso': 0.546502230068171, 'Ridge': 0.5311056508222229, 'Elasticnet': 0.28530766234284877, 'DecisionTreeRegressor': 0.6316574806367028, 'RandomForestRegressor': 0.7186341368896962, 'XGB': 0.7396283845259768}
+[2026-09-21 21:36:47,105] 65 root - INFO - Best Model Found , Model Name : XGB , R2 Score : 0.7396283845259768

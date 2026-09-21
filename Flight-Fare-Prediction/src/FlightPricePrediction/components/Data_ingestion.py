@@ -30,6 +30,45 @@ class DataIngestion:
             logging.info("Splitting the data into train and test")
             train_data, test_data = train_test_split(data,test_size=0.2, random_state=42)
             logging.info("Data splitting is done")
+            #Date_of_journey --> Day, Month
+            train_data["Date_of_Journey"] = pd.to_datetime(
+                train_data["Date_of_Journey"],
+                format = "%d/%m/%Y"
+            )
+            train_data["Journey_Day"] = train_data["Date_of_Journey"].dt.day
+            train_data["Journey_Month"] = train_data["Date_of_Journey"].dt.month
+
+            #Dep_time --> Hour, Minute
+            # Dep_Time → Hour, Minute
+            train_data["Dep_Time"] = pd.to_datetime(
+                train_data["Dep_Time"],
+                format="%H:%M"
+            )
+
+            train_data["Dep_Hour"] = train_data["Dep_Time"].dt.hour
+            train_data["Dep_Minute"] = train_data["Dep_Time"].dt.minute
+            
+            logging.info("Conver data train is done")
+            
+            
+            test_data["Date_of_Journey"] = pd.to_datetime(
+                test_data["Date_of_Journey"],
+                format = "%d/%m/%Y"
+            )
+            test_data["Journey_Day"] = test_data["Date_of_Journey"].dt.day
+            test_data["Journey_Month"] = test_data["Date_of_Journey"].dt.month
+
+            #Dep_time --> Hour, Minute
+            # Dep_Time → Hour, Minute
+            test_data["Dep_Time"] = pd.to_datetime(
+                test_data["Dep_Time"],
+                format="%H:%M"
+            )
+
+            test_data["Dep_Hour"] = test_data["Dep_Time"].dt.hour
+            test_data["Dep_Minute"] = test_data["Dep_Time"].dt.minute
+            
+            logging.info("Conver test train is done")
             
             train_data.to_csv(self.ingestion_config.train_data_path, index=False)
             test_data.to_csv(self.ingestion_config.test_data_path, index=False)
