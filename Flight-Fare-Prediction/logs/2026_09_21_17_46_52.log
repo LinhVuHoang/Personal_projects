@@ -1,0 +1,25 @@
+[2026-09-21 17:46:53,433] 23 root - INFO - Data ingestion started
+[2026-09-21 17:46:53,451] 29 root - INFO - Created the raw data file
+[2026-09-21 17:46:53,451] 30 root - INFO - Splitting the data into train and test
+[2026-09-21 17:46:53,452] 32 root - INFO - Data splitting is done
+[2026-09-21 17:46:53,464] 36 root - INFO - Created the train and test data files
+[2026-09-21 17:46:53,464] 37 root - INFO - Data ingestion completed
+[2026-09-21 17:46:53,540] 68 root - INFO - Read train and test data complete
+[2026-09-21 17:46:53,541] 69 root - INFO - Train Dataframe Head : 
+       Airline Date_of_Journey   Source Dep_Time Destination  Class  Price
+0  Jet Airways      18/05/2019  Kolkata    05:45    Banglore      0  10844
+1        GoAir       3/06/2019    Delhi    10:35      Cochin      0   4959
+2  Jet Airways       1/05/2019  Kolkata    14:05    Banglore      0  14781
+3       IndiGo      24/05/2019  Chennai    14:45     Kolkata      0   3858
+4  Jet Airways      21/05/2019    Delhi    22:50      Cochin      0  12898
+[2026-09-21 17:46:53,542] 70 root - INFO - Test Dataframe Head : 
+             Airline Date_of_Journey  Source Dep_Time Destination  Class  Price
+0        Jet Airways      12/03/2019  Mumbai    06:30   Hyderabad      0  23528
+1        Jet Airways       9/05/2019   Delhi    11:30      Cochin      0  12373
+2           SpiceJet      24/04/2019   Delhi    15:45      Cochin      0   5583
+3  Multiple carriers      21/03/2019   Delhi    12:50      Cochin      0   7695
+4          Air India      24/06/2019   Delhi    17:15      Cochin      0  11972
+[2026-09-21 17:46:53,542] 26 root - INFO - Data Transformation initiated
+[2026-09-21 17:46:53,542] 33 root - INFO - Pipeline Initiated
+[2026-09-21 17:46:53,542] 60 root - INFO - Exception occured in the initiate_datatransformation
+[2026-09-21 17:46:53,542] 98 root - INFO - Exception occured in the initiate_datatransformation
