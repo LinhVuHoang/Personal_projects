@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+    <title>Flight Price Prediction</title>
+</head>
+<body>
+    <h1>Flight Price Prediction</h1>
+    <form method="post">
+        <label for="Airline">Airline:</label>
+        <select name="Airline" required>
+            <option value="Jet Airways">Jet Airways</option>
+            <option value="IndiGo">IndiGo</option>
+            <option value="Air India">Air India</option>
+            <option value="Multiple carriers">Multiple carriers</option>
+            <option value="SpiceJet">SpiceJet</option>
+            <option value="Vistara">Vistara</option>
+            <option value="Air Asia">Air Asia</option>
+            <option value="GoAir">GoAir</option>
+            <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+            <option value="Jet Airways Business">Jet Airways Business</option>
+            <option value="Vistara Premium economy">Vistara Premium economy</option>
+            <option value="Trujet">Trujet</option>
+        </select>
+
+        <label for="Source">Source</label>
+        <select name="Source" required>
+            <option value="Delhi">Delhi</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Chennai">Chennai</option>
+        </select>
+
+        <label for="Destination">Destination City:</label>
+        <select name="Destination" required>
+            <option value="Cochin">Cochin</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="New Delhi">New Delhi</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Kolkata">Kolkata</option>
+        </select>
+
+
+        <label for="Journey_Day">Journey Day</label>
+        <input type="number" name="Journey_Day" required>
+
+        <label for="Journey_Month">Journey Month</label>
+        <input type="number" name="Journey_Month" required>
+        
+        <label for="Dep_Hour">Dep Hour</label>
+        <input type="number" name="Dep_Hour" required>
+
+        <label for="Dep_Minute">Dep Minute</label>
+        <input type="number" name="Dep_Minute" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <script>
+        const dayInput = document.getElementById("Journey_Day");
+        const monthInput = document.getElementById("Journey_Month");
+        const currentYear = new Date().getFullYear()
+
+        function updateDayLimit(){
+            const month = parseInt(monthInput.value);
+            if (month >=1 && month <=12){
+                //Lấy số ngày của tháng
+                const daysInMonth = new Date(currentYear, month, 0).getDate();
+                dayInput.max = daysInMonth
+                //Nếu ngày hiện tại lớn hơn số ngày tối đa
+                if (parseInt(dayInput.value) > daysInMonth){
+                    dayInput.value = daysInMonth;
+                }
+            }
+        }
+        monthInput.addEventListener("input", updateDayLimit);
+    </script>
+</body>
+</html>

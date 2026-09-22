@@ -17,6 +17,7 @@ class PredictPipeline:
             model = load_object(model_path)
             scaled = preprocessor.transform(features)
             pred = model.predict(scaled)
+            return pred
         except Exception as e:
             raise customexception(e, sys)
 
@@ -30,12 +31,12 @@ class CustomData:
                 Dep_Hour: int,
                 Dep_Minute: int
                 ):
-        self.Airline = Airline,
-        self.Source = Source,
-        self.Destination = Destination,
-        self.Journey_Day = Journey_Day,
-        self.Journey_Month = Journey_Month,
-        self.Dep_Hour = Dep_Hour,
+        self.Airline = Airline
+        self.Source = Source
+        self.Destination = Destination
+        self.Journey_Day = Journey_Day
+        self.Journey_Month = Journey_Month
+        self.Dep_Hour = Dep_Hour
         self.Dep_Minute = Dep_Minute
 
     def get_data_as_dataframe(self):
