@@ -1,0 +1,61 @@
+[ 2026-09-29 23:18:43,491 ] 22 root - INFO - Data Ingestion Started
+[ 2026-09-29 23:18:43,501 ] 26 root - INFO - Read the dataset as dataframe
+[ 2026-09-29 23:18:43,507 ] 30 root - INFO - Created the raw data file
+[ 2026-09-29 23:18:43,507 ] 32 root - INFO - Splitting the data into train and test
+[ 2026-09-29 23:18:43,508 ] 38 root - INFO - Data ingestion completed
+[ 2026-09-29 23:18:43,524 ] 58 root - INFO - Read train and test data completed
+[ 2026-09-29 23:18:43,524 ] 59 root - INFO - Obtaining preprocessing object
+[ 2026-09-29 23:18:43,524 ] 48 root - INFO - Categorical columns: ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+[ 2026-09-29 23:18:43,524 ] 49 root - INFO - Numerical columns: ['writing_score', 'reading_score']
+[ 2026-09-29 23:18:43,531 ] 65 root - INFO - Train Data Before Transformation:
+    gender race_ethnicity parental_level_of_education         lunch test_preparation_course  math_score  reading_score  writing_score
+0  female        group D             master's degree      standard                    none          62             70             75
+1  female        group C           bachelor's degree  free/reduced               completed          66             83             83
+2  female        group D                some college  free/reduced                    none          79             89             86
+3    male        group C             master's degree  free/reduced                    none          61             67             66
+4    male        group E                 high school      standard                    none          73             64             57
+[ 2026-09-29 23:18:43,541 ] 66 root - INFO - Test Data Before Transformation:
+    gender race_ethnicity parental_level_of_education         lunch test_preparation_course  math_score  reading_score  writing_score
+0  female        group C          associate's degree      standard                    none          91             86             84
+1  female        group B                some college  free/reduced               completed          53             66             73
+2    male        group D           bachelor's degree      standard                    none          80             73             72
+3    male        group C                some college  free/reduced                    none          74             77             73
+4    male        group E                some college      standard               completed          84             83             78
+[ 2026-09-29 23:18:43,547 ] 74 root - INFO - Input Train Data After Transformation: 
+    gender race_ethnicity parental_level_of_education         lunch test_preparation_course  reading_score  writing_score
+0  female        group D             master's degree      standard                    none             70             75
+1  female        group C           bachelor's degree  free/reduced               completed             83             83
+2  female        group D                some college  free/reduced                    none             89             86
+3    male        group C             master's degree  free/reduced                    none             67             66
+4    male        group E                 high school      standard                    none             64             57
+[ 2026-09-29 23:18:43,547 ] 75 root - INFO - Input Test Data After Transformation:
+    gender race_ethnicity parental_level_of_education         lunch test_preparation_course  reading_score  writing_score
+0  female        group C          associate's degree      standard                    none             86             84
+1  female        group B                some college  free/reduced               completed             66             73
+2    male        group D           bachelor's degree      standard                    none             73             72
+3    male        group C                some college  free/reduced                    none             77             73
+4    male        group E                some college      standard               completed             83             78
+[ 2026-09-29 23:18:43,547 ] 76 root - INFO - Target Train Data After Transformation: 
+0    62
+1    66
+2    79
+3    61
+4    73
+Name: math_score, dtype: int64
+[ 2026-09-29 23:18:43,547 ] 77 root - INFO - Target Test Data After Transformation:
+ 0    91
+1    53
+2    80
+3    74
+4    84
+Name: math_score, dtype: int64
+[ 2026-09-29 23:18:43,547 ] 79 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[ 2026-09-29 23:18:43,579 ] 86 root - INFO - Input Train Data After Transformation: 
+ (800, 19)
+[ 2026-09-29 23:18:43,579 ] 87 root - INFO - Input Test Data After Transformation: 
+ (200, 19)
+[ 2026-09-29 23:18:43,579 ] 93 root - INFO - Saved preprocessing object.
+[ 2026-09-29 23:18:43,579 ] 23 root - INFO - Split training and test input data
+[ 2026-09-29 23:19:47,374 ] 87 root - INFO - Best found model on both training and testing dataset
+[ 2026-09-29 23:19:47,378 ] 94 root - INFO - Best model: LinearRegression()
+[ 2026-09-29 23:19:47,378 ] 95 root - INFO - R2 score of best model is: 0.8804332983749565

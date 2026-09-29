@@ -41,8 +41,13 @@ class DataTransformation:
                 ]
             )
             
+            preprocessor = ColumnTransformer([
+                ("num_pipeline",num_pipeline,numerical_columns),
+                ("cat_pipeline",cat_pipeline,categorical_columns)
+            ])
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
+            return preprocessor
         except Exception as e:
             raise CustomException(e,sys)
         
